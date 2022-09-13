@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const registerRoutes = require('./src/routes/registerRouter')
+const registerRoutes = require('./routes/registerRouter')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
