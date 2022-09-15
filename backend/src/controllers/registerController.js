@@ -4,7 +4,6 @@ const User = require('../models/userModel')
 const passwordValidation = require('../utils/passwordValidation')
 const emailValidation = require('../utils/emailValidation')
 
-
 //@POST /api/register
 const registerUser = async (req, res) => {
   const {name, email, password} = req.body
@@ -76,7 +75,6 @@ const registerUser = async (req, res) => {
     "message": null
   })
 }
-
 
 module.exports = {
   registerUser
