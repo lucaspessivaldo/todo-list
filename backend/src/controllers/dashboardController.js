@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler')
+const {isObjectIdOrHexString} = require('mongoose')
 const Todo = require('../models/todoModel')
 
 //@GET Get all todos
@@ -54,6 +55,11 @@ const deleteTodo = asyncHandler( async (req, res) => {
     throw new Error('todoId is required')
   }
 
+  if(!isObjectIdOrHexString(todoId)){
+    res.status(400)
+    throw new Error('todoId is not a Object.id valid')
+  }
+
   const todo = await Todo.findById(todoId)
 
   if(!todo || todo.user.toString() !== userToken) {
@@ -77,31 +83,48 @@ const deleteTodo = asyncHandler( async (req, res) => {
 })
 
 //@PATCH Update a todo
-const updateTodo = (req, res) => {
+const updateTodo = asyncHandler(async (req, res) => {
   const {text, checked, todoId} = req.body
+  const userToken = req.token.id
 
   if(!todoId) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "todoId are required"
-    })
+    res.status(400)
+    throw new Error('todoId are required')
+  }
+
+  if(!isObjectIdOrHexString(todoId)){
+    res.status(400)
+    throw new Error('todoId is not a Object.id valid')
   }
 
   if(!text && !checked) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "text or checked are required"
-    })
+    res.status(400)
+    throw new Error('text or checked are required')
   }
+
+  const todo = await Todo.findById(todoId)
+  
+  if(!todo || todo.user.toString() !== userToken) {
+    res.status(400)
+    throw new Error('todoId not found')
+  }
+
+  if(typeof checked === 'boolean'){
+    todo.checked = checked
+  }
+
+  if (text) {
+    todo.text = text
+  }
+
+  await todo.save()
 
   res.status(200).json({
     "success": true,
     "data": {},
     "message": "todo was updated"
   })
-}
+})
 
 module.exports = {
   getTodos,
