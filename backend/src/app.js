@@ -5,6 +5,7 @@ require('dotenv').config()
 const registerRoutes = require('./routes/registerRouter')
 const loginRoutes = require('./routes/loginRouter')
 const dashboardRouter = require('./routes/dashboardRouter')
+const errorHandler = require('./middleware/errorHandler')
 const cors = require('cors')
 
 app.use(express.json())
@@ -16,5 +17,6 @@ app.get("/", (req, res) => res.status(200).json({"success": true}))
 app.use("/api/register", registerRoutes)
 app.use("/api/login", loginRoutes)
 app.use("/api/dashboard", dashboardRouter)
+app.use(errorHandler)
 
 module.exports = app;

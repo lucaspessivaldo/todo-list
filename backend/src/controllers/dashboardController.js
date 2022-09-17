@@ -1,3 +1,4 @@
+const asyncHandler = require('express-async-handler')
 const Todo = require('../models/todoModel')
 
 //@GET Get all todos
@@ -44,20 +45,17 @@ const createTodo = async (req, res) => {
 }
 
 //@DELETE delete a todo
-const deleteTodo = async (req, res) => {
+const deleteTodo = asyncHandler( async (req, res) => {
   const {todoId} = req.body
   const userToken = req.token.id
 
   if(!todoId) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "todoId is required"
-    })
+    res.status(400)
+    throw new Error('todoId is required')
   }
 
   const todo = await Todo.findById(todoId)
-  
+
   if(!todo || todo.user.toString() !== userToken) {
     return res.status(400).json({
       "success": false,
@@ -75,10 +73,28 @@ const deleteTodo = async (req, res) => {
     },
     "message": "todo deleted"
   })
-}
 
-//@PATCH Edite a todo
+})
+
+//@PATCH Update a todo
 const updateTodo = (req, res) => {
+  const {text, checked, todoId} = req.body
+
+  if(!todoId) {
+    return res.status(400).json({
+      "success": false,
+      "data": {},
+      "message": "todoId are required"
+    })
+  }
+
+  if(!text && !checked) {
+    return res.status(400).json({
+      "success": false,
+      "data": {},
+      "message": "text or checked are required"
+    })
+  }
 
   res.status(200).json({
     "success": true,
@@ -87,24 +103,9 @@ const updateTodo = (req, res) => {
   })
 }
 
-
 module.exports = {
   getTodos,
   createTodo,
   deleteTodo,
   updateTodo
 }
-
-
-// user: {
-//   type: mongoose.Schema.Types.ObjectId,
-//   ref: 'User'
-// },
-// text: String,
-// checked: Boolean
-
-// {
-//   "success": false,
-//   "data": {},
-//   "message": "User email already exists"
-// }
