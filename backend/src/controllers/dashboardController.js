@@ -17,16 +17,13 @@ const getTodos = async (req, res) => {
 }
 
 //@POST Create Todo
-const createTodo = async (req, res) => {
+const createTodo = asyncHandler(async (req, res) => {
   const {text} = req.body
   const userToken = req.token.id
 
   if(!text) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "Text is required"
-    })
+    res.status(400)
+    throw new Error('Text is required')
   }
   
   const newTodo = await Todo.create({
@@ -43,7 +40,7 @@ const createTodo = async (req, res) => {
     "message": null
   })
 
-}
+})
 
 //@DELETE delete a todo
 const deleteTodo = asyncHandler( async (req, res) => {
@@ -63,11 +60,8 @@ const deleteTodo = asyncHandler( async (req, res) => {
   const todo = await Todo.findById(todoId)
 
   if(!todo || todo.user.toString() !== userToken) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "TodoId not found"
-    })
+    res.status(400)
+    throw new Error('todoId not found')
   }
 
   todo.remove()

@@ -1,44 +1,33 @@
 const User = require('../models/userModel')
+const asyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-const loginController = async (req, res) => {
+const loginController = asyncHandler(async (req, res) => {
   const {email, password} = req.body
 
   if (!email) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "Email is required"
-    })
+    res.status(400)
+    throw new Error('Email is required')
   }
 
   if (!password) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "Password is required"
-    })
+    res.status(400)
+    throw new Error('Password is required')
   }
 
   const user = await User.findOne({email: email})
 
   if (!user) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "User not found"
-    })
+    res.status(400)
+    throw new Error('User not found')
   }
 
   const checkPassword = await bcrypt.compare(password, user.password)
 
   if(!checkPassword) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "password invalid"
-    })
+    res.status(400)
+    throw new Error('password invalid')
   }
 
   const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: '10h' })
@@ -50,6 +39,6 @@ const loginController = async (req, res) => {
     },
     "message": null
   })
-}
+})
 
 module.exports = loginController

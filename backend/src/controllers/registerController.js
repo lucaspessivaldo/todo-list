@@ -1,61 +1,44 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
+const asyncHandler = require('express-async-handler')
 const passwordValidation = require('../utils/passwordValidation')
 const emailValidation = require('../utils/emailValidation')
 
 //@POST /api/register
-const registerUser = async (req, res) => {
+const registerUser = asyncHandler(async (req, res) => {
   const {name, email, password} = req.body
 
   if (!name) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "Name is required"
-    })
+    res.status(400)
+    throw new Error('Name is required')
   }
 
   if (!email) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "Email is required"
-    })
+    res.status(400)
+    throw new Error('Email is required')
   }
 
   if (!password) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "Password is required"
-    })
+    res.status(400)
+    throw new Error('Password is required')
   }
 
   if (!passwordValidation(password)){
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "Password - invalid"
-    })
+    res.status(400)
+    throw new Error('Password - invalid')
   }
 
   if (!emailValidation(email)){
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "Email - invalid"
-    })
+    res.status(400)
+    throw new Error('Email - invalid')
   }
 
   const user = await User.findOne({email: email})
 
   if (user) {
-    return res.status(400).json({
-      "success": false,
-      "data": {},
-      "message": "User email already exists"
-    })
+    res.status(400)
+    throw new Error('User email already exists')
   }
 
   const hash = await bcrypt.hash(password, 10)
@@ -74,7 +57,7 @@ const registerUser = async (req, res) => {
     },
     "message": null
   })
-}
+})
 
 module.exports = {
   registerUser
