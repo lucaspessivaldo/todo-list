@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+
+.navbar-full {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 6rem;
+  background-color: #111111;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.123);
+}
+
+.navbar-container {
+  font-family: 'Rajdhani', sans-serif;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+  cursor: pointer;
+}
+
+.navbar-container:hover {
+  color: rgb(194, 194, 194)
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 140rem;
+}
+
+.navbar-text {
+  font-size: 3rem;
+}
+
+.navbar-logo {
+  font-size: 3rem;
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 2rem;
+}
+
+.navbar-buttons-link {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.733);
+}
+
+.navbar-buttons-link:hover {
+  cursor: pointer;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
