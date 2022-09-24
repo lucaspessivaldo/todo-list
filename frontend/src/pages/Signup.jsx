@@ -15,10 +15,10 @@ const SignupSchema = Yup.object().shape({
   confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], "Wrong password").required('Required')
 });
 
-export default function Login() {
+export default function Signup() {
   return (
     <div className='signup-container'>
-      <h1 className='form-h1'>Login</h1>
+      <h1 className='form-h1'>Sign up</h1>
       <Formik
         initialValues={{
           name: '',
@@ -33,6 +33,16 @@ export default function Login() {
         {({ errors, touched }) => (
           <Form className='form-singup'>
 
+            <div className='form-input-container'>
+              <Field
+                name="name"
+                placeholder="Name"
+                className={`form-input ${errors.name && touched.name ? "input-error" : ""}`}
+              />
+              {errors.name && touched.name ? (
+                <div className='input-error-message'>{errors.name}</div>
+              ) : null}
+            </div>
 
             <div className='form-input-container'>
               <Field
@@ -54,7 +64,17 @@ export default function Login() {
               {errors.password && touched.password ? <div className='input-error-message'>{errors.password}</div> : null}
             </div>
 
-            <button type="submit" className='form-submit-button'>Login</button>
+            <div className='form-input-container'>
+              <Field
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                className={`form-input ${errors.confirmPassword && touched.confirmPassword ? "input-error" : ""}`}
+              />
+              {errors.confirmPassword && touched.confirmPassword ? <div className='input-error-message'>{errors.confirmPassword}</div> : null}
+            </div>
+
+            <button type="submit" className='form-submit-button'>Create Account</button>
           </Form>
         )}
       </Formik>

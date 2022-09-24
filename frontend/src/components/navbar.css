@@ -1,13 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
-
 .navbar-full {
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 6rem;
-  background-color: #111111;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.123);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
 }
 
 .navbar-container {
@@ -17,10 +13,6 @@
   align-items: center;
   margin-left: 1.5rem;
   cursor: pointer;
-}
-
-.navbar-container:hover {
-  color: rgb(194, 194, 194)
 }
 
 .navbar {
@@ -49,11 +41,22 @@
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.8rem;
   color: rgba(255, 255, 255, 0.733);
+  transition: 0.5s;
 }
 
 .navbar-buttons-link:hover {
   cursor: pointer;
   color: white;
+}
+
+.signup-button {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.733);
+  border-radius: 0.5rem;
+}
+
+.signup-button:hover {
+  border: 1px solid rgb(255, 255, 255);
 }
 
 a {
