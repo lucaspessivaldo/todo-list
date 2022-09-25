@@ -23,6 +23,8 @@ export default function Signup() {
         initialValues={{
           name: '',
           email: '',
+          password: '',
+          confirmPassword: '',
         }}
         validationSchema={SignupSchema}
         onSubmit={values => {

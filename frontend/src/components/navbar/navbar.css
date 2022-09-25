@@ -49,6 +49,16 @@
   color: white;
 }
 
+.navbar-user-picture {
+  color: rgb(255, 255, 255);
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.navbar-user-picture:hover {
+  color: rgba(255, 255, 255, 0.836);
+}
+
 .signup-button {
   padding: 0.3rem 0.8rem;
   border: 1px solid rgba(255, 255, 255, 0.733);

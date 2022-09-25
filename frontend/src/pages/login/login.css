@@ -1,0 +1,73 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: calc(100vh - 6rem)
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-h1 {
+  color: white;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.form-input-container {
+  height: 7rem;
+  margin-bottom: 1rem;
+}
+
+.form-input {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.8rem;
+  color: white;
+
+  width: 35rem;
+  height: 5rem;
+
+  border-radius: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.733);
+  outline: none;
+  padding: 1rem;
+  background-color: black;
+}
+
+.input-error {
+  border: 1px solid rgb(250, 62, 62);
+  outline: none;
+}
+
+.input-error-message {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+  color: rgb(250, 62, 62);
+}
+
+.form-submit-button {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5rem;
+
+  width: 15rem;
+  height: 4rem;
+  border-radius: 0.6rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+}
+
+.form-submit-button:hover {
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+}

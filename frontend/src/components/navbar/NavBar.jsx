@@ -1,4 +1,5 @@
 import { RiCheckDoubleFill } from 'react-icons/ri'
+import { FaUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import './navbar.css'
 
@@ -9,7 +10,7 @@ export default function NavBar() {
 
         <Link to="/" className='navbar-container'>
           <RiCheckDoubleFill className='navbar-logo' />
-          <p className='navbar-text'>checklist</p>
+          <p className='navbar-text'>LOGO</p>
         </Link>
 
         <div className='navbar-buttons'>
@@ -20,6 +21,8 @@ export default function NavBar() {
           <Link to="/signup">
             <p className='navbar-buttons-link signup-button'>Sign Up</p>
           </Link>
+
+          <FaUserCircle className='navbar-user-picture' />
         </div>
 
       </div>

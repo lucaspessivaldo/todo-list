@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 
 import App from './App'
-import Dashboard from './pages/Dashboard'
-import Signup from './pages/Signup'
-import Login from './pages/Login'
-import NavBar from './components/NavBar'
+import Dashboard from './pages/dashboard/Dashboard'
+import Signup from './pages/signup/Signup'
+import Login from './pages/login/Login'
+import NavBar from './components/navbar/NavBar'
 
 
 import {

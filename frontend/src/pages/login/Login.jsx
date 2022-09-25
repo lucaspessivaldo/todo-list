@@ -1,28 +1,21 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import './signup.css'
-
-const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+import './login.css'
 
 const SignupSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().min(8).matches(passwordRegex, 'Must contain One Uppercase, One Lowercase, One Number').required('Required'),
-  confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], "Wrong password").required('Required')
+  email: Yup.string().required('Required'),
+  password: Yup.string().required('Required'),
 });
 
 export default function Login() {
   return (
-    <div className='signup-container'>
+    <div className='login-container'>
       <h1 className='form-h1'>Login</h1>
       <Formik
         initialValues={{
-          name: '',
           email: '',
+          password: '',
         }}
         validationSchema={SignupSchema}
         onSubmit={values => {
@@ -31,7 +24,7 @@ export default function Login() {
         }}
       >
         {({ errors, touched }) => (
-          <Form className='form-singup'>
+          <Form className='form-login'>
 
 
             <div className='form-input-container'>
