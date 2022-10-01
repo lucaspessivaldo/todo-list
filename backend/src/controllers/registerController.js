@@ -50,10 +50,12 @@ const registerUser = asyncHandler(async (req, res) => {
   })
 
   const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET, { expiresIn: '10h' })
+
   res.status(201).json({
     "success": true,
     "data": {
-      token
+      token: token,
+      name: newUser.name,
     },
     "message": null
   })
