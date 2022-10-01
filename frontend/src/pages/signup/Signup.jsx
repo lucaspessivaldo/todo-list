@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { ToastContainer, toast } from 'react-toastify';
 import { api } from '../../services/api';
 import * as Yup from 'yup';
+import 'react-toastify/dist/ReactToastify.css';
 import './signup.css'
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
@@ -40,7 +40,6 @@ const submitForm = async (values) => {
   }).then(res => {
     console.log(res.data)
   }).catch(err => {
-    console.log(err.response.data)
     notifyError(err.response.data.message)
   })
 }
