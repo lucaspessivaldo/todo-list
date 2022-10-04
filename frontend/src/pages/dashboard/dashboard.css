@@ -1,0 +1,80 @@
+.dashboard-main {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.dashboard-container {
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 60rem;
+
+  font-family: 'Rajdhani', sans-serif;
+
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.185);
+}
+
+.dashboard-text-header {
+  font-size: 3rem;
+}
+
+.delete-item-button {
+  cursor: pointer;
+  font-size: 2.5rem;
+  transition: color 0.5s;
+}
+
+.delete-item-button:hover {
+  color: rgb(230, 57, 57);
+}
+
+.item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+  font-size: 2rem;
+  margin-top: 1rem;
+
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.item-todo-text {
+  cursor: pointer;
+}
+
+.item-text-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashbaord-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.dashbaord-plus-icon {
+  font-size: 5rem;
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+.dashbaord-plus-icon:hover {
+  color: #419dff;
+}
+
+
+input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: #1b1b1b;
+  font: inherit;
+  width: 0.9em;
+  height: 0.9em;
+}
