@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const loginController = asyncHandler(async (req, res) => {
-  const {email, password} = req.body
+  const { email, password } = req.body
 
   if (!email) {
     res.status(400)
@@ -16,7 +16,7 @@ const loginController = asyncHandler(async (req, res) => {
     throw new Error('Password is required')
   }
 
-  const user = await User.findOne({email: email})
+  const user = await User.findOne({ email: email })
 
   if (!user) {
     res.status(400)
@@ -25,17 +25,18 @@ const loginController = asyncHandler(async (req, res) => {
 
   const checkPassword = await bcrypt.compare(password, user.password)
 
-  if(!checkPassword) {
+  if (!checkPassword) {
     res.status(400)
     throw new Error('password invalid')
   }
 
-  const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: '10h' })
-  
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '10h' })
+
   res.status(200).json({
     "success": true,
     "data": {
-      token
+      token: token,
+      name: user.name
     },
     "message": null
   })
