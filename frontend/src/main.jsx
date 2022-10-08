@@ -2,6 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
+import { store } from './app/store'
+import { Provider } from 'react-redux'
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import App from './App'
 import Dashboard from './pages/dashboard/Dashboard'
 import Signup from './pages/signup/Signup'
@@ -16,13 +22,16 @@ import {
 } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <NavBar />
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
+    <ToastContainer />
+  </Provider>
 )

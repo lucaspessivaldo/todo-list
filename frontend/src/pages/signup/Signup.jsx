@@ -1,53 +1,68 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { reset, register } from '../../app/authSlice';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import { ToastContainer, toast } from 'react-toastify';
-import { api } from '../../services/api';
+import { toast } from 'react-toastify';
+
 import * as Yup from 'yup';
-import 'react-toastify/dist/ReactToastify.css';
 import './signup.css'
+import { useEffect } from 'react';
 
-
-const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-
-const notifyError = (message) => {
-  toast.error(message, {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'dark',
-  })
-};
-
-const SignupSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().min(8).matches(passwordRegex, 'Must contain One Uppercase, One Lowercase, One Number').required('Required'),
-  confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], "Wrong password").required('Required')
-});
-
-const submitForm = async (values) => {
-  api.post('/register', {
-    name: values.name,
-    email: values.email,
-    password: values.password
-  }).then(res => {
-    console.log(res.data)
-  }).catch(err => {
-    notifyError(err.response.data.message)
-  })
-}
 
 export default function Signup() {
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { user, isError, isSuccess, message } = useSelector((state) => {
+    return state.auth
+  })
+
+  const notifyError = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    })
+  };
+
+  const SignupSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().min(8).matches(passwordRegex, 'Must contain One Uppercase, One Lowercase, One Number').required('Required'),
+    confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], "Wrong password").required('Required')
+  });
+
+  useEffect(() => {
+    if (isError) {
+      notifyError(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/dashboard')
+    }
+
+    dispatch(reset())
+
+  }, [user, isError, isSuccess, message])
+
+  const submitForm = async (values) => {
+    const userData = { ...values }
+    dispatch(register(userData))
+  }
+
   return (
     <div className='signup-container'>
-      <ToastContainer />
       <h1 className='form-h1'>Sign up</h1>
       <Formik
         initialValues={{
