@@ -1,48 +1,61 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { ToastContainer, toast } from 'react-toastify';
-import { api } from '../../services/api';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
+import { reset, login } from '../../app/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import * as Yup from 'yup';
 import './login.css'
 
-//Redux
-import { useDispatch } from 'react-redux';
-
-const SignupSchema = Yup.object().shape({
-  email: Yup.string().required('Required'),
-  password: Yup.string().required('Required'),
-});
-
-const notifyError = (message) => {
-  toast.error(message, {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'dark',
-  })
-};
-
-const submitForm = async (values) => {
-  api.post('/login', {
-    name: values.name,
-    email: values.email,
-    password: values.password
-  }).then(res => {
-    console.log(res.data)
-  }).catch(err => {
-    notifyError(err.response.data.message)
-  })
-}
-
 export default function Login() {
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { user, isError, isSuccess, message } = useSelector((state) => {
+    return state.auth
+  })
+
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string().required('Required'),
+    password: Yup.string().required('Required'),
+  });
+
+  const notifyError = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    })
+  };
+
+  useEffect(() => {
+    if (isError) {
+      notifyError(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/dashboard')
+    }
+
+    dispatch(reset())
+
+  }, [user, isError, isSuccess, message])
+
+  const submitForm = async (values) => {
+    const userData = { ...values }
+    dispatch(login(userData))
+  }
+
+
   return (
     <div className='login-container'>
-      <ToastContainer />
       <h1 className='form-h1'>Login</h1>
       <Formik
         initialValues={{

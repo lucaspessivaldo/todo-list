@@ -1,9 +1,22 @@
-import { RiCheckDoubleFill } from 'react-icons/ri'
+import { RiCheckDoubleFill, RiContactsBookLine } from 'react-icons/ri'
 import { FaUserCircle } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout, reset } from '../../app/authSlice'
 import './navbar.css'
 
 export default function NavBar() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
+
+  const onLogout = () => {
+    dispatch(logout())
+    dispatch(reset())
+    navigate('/')
+  }
+
+
   return (
     <header className='navbar-full'>
       <div className='navbar'>
@@ -22,7 +35,7 @@ export default function NavBar() {
             <p className='navbar-buttons-link signup-button'>Sign Up</p>
           </Link>
 
-          <FaUserCircle className='navbar-user-picture' />
+          <FaUserCircle onClick={() => onLogout()} className='navbar-user-picture' />
         </div>
 
       </div>
