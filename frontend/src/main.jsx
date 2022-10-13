@@ -4,6 +4,7 @@ import './index.css'
 
 import { store } from './app/store'
 import { Provider } from 'react-redux'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +15,7 @@ import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
 import NavBar from './components/navbar/NavBar'
 
+const queryClient = new QueryClient()
 
 import {
   BrowserRouter,
@@ -23,15 +25,17 @@ import {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </BrowserRouter>
-    <ToastContainer />
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
+      <ToastContainer />
+    </QueryClientProvider>
   </Provider>
 )

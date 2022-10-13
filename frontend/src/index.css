@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap');
 
 *,
 *:after,
@@ -15,4 +16,13 @@ html {
 
 .Toastify__toast--error {
   font-size: 1.8rem;
+}
+
+.homepage-title {
+  color: white;
+  font-size: 5rem;
+  text-align: center;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
 }

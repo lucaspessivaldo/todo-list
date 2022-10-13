@@ -1,4 +1,4 @@
-import { RiCheckDoubleFill, RiContactsBookLine } from 'react-icons/ri'
+import { RiCheckDoubleFill } from 'react-icons/ri'
 import { FaUserCircle } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -21,21 +21,26 @@ export default function NavBar() {
     <header className='navbar-full'>
       <div className='navbar'>
 
-        <Link to="/" className='navbar-container'>
+        <Link to={user ? '#' : '/'} className='navbar-container'>
           <RiCheckDoubleFill className='navbar-logo' />
           <p className='navbar-text'>LOGO</p>
         </Link>
 
         <div className='navbar-buttons'>
-          <Link to="/login">
-            <p className='navbar-buttons-link'>Login</p>
-          </Link>
+          {!user ? (
+            <>
+              <Link to="/login">
+                <p className='navbar-buttons-link'>Login</p>
+              </Link>
 
-          <Link to="/signup">
-            <p className='navbar-buttons-link signup-button'>Sign Up</p>
-          </Link>
+              <Link to="/signup">
+                <p className='navbar-buttons-link signup-button'>Sign Up</p>
+              </Link>
+            </>
+          ) : (
+            <FaUserCircle onClick={() => onLogout()} className='navbar-user-picture' />
+          )}
 
-          <FaUserCircle onClick={() => onLogout()} className='navbar-user-picture' />
         </div>
 
       </div>
