@@ -13,13 +13,30 @@ export const getTodos = async () => {
 }
 
 export const addTodo = async (text) => {
-  return await api.post('/dashboard', { text })
-}
-
-export const updateTodo = async ({ todoId, checked }) => {
-  return await api.patch('/dashboard', { todoId, checked })
+  const access_token = getToken()
+  return await api.post('/dashboard', { text }, {
+    headers: {
+      'Authorization': `token ${access_token}`
+    }
+  })
 }
 
 export const deleteTodo = async (todoId) => {
-  return await api.delete('/dashboard', { todoId })
+  const access_token = getToken()
+  return await api.delete('/dashboard', {
+    headers: {
+      'Authorization': `token ${access_token}`
+    },
+    data: {
+      todoId
+    }
+  })
+}
+
+export const updateTodo = async ({ todoId, checked }) => {
+  return await api.patch('/dashboard', { todoId, checked }, {
+    headers: {
+      'Authorization': `token ${access_token}`
+    }
+  })
 }

@@ -57,7 +57,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 }
 
 .dashbaord-plus-icon {
@@ -67,7 +66,7 @@
 }
 
 .dashbaord-plus-icon:hover {
-  color: #419dff;
+  color: #b6b6b6;
 }
 
 
@@ -77,4 +76,23 @@ input[type="checkbox"] {
   font: inherit;
   width: 0.9em;
   height: 0.9em;
+}
+
+.create-todo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-create-todo {
+  width: 100%;
+  height: 4rem;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  padding-left: 1rem;
+  margin-right: 1rem;
+
+  color: #1b1b1b;
+  font-size: 1.5rem
 }
