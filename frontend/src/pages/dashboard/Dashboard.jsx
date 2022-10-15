@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { MdAddCircle } from 'react-icons/md'
 
-import { useQuery, useMutation, useQueryClient } from 'react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getTodos, addTodo, updateTodo, deleteTodo } from '../../api/todosApi'
 
 import './dashboard.css'
@@ -25,7 +25,13 @@ export default function Dashboard() {
 
   const createNewTodo = useMutation(addTodo, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['todos'])
+      return queryClient.invalidateQueries(['todos'])
+    },
+  })
+
+  const removeTodo = useMutation(deleteTodo, {
+    onSuccess: () => {
+      return queryClient.invalidateQueries()
     },
   })
 
@@ -48,8 +54,18 @@ export default function Dashboard() {
             onClick={() => createNewTodo.mutate(newTodo)}
           />
         </div>
-        {isLoading && <h1>Is loadingsdf......</h1>}
-        {isSuccess && data.data.todos.map(todo => <TodoItem key={todo._id} todoId={todo._id} todoIsDone={todo.checked} todoText={todo.text} />)}
+        {isLoading && <h1>Is loading...</h1>}
+        {isSuccess && data.data.todos.map(todo => {
+          return (
+            <TodoItem
+              key={todo._id}
+              todoId={todo._id}
+              todoIsDone={todo.checked}
+              todoText={todo.text}
+              removeTodo={removeTodo}
+            />
+          )
+        })}
       </div>
     </main>
   )

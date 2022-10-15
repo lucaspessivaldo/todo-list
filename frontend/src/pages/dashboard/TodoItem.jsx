@@ -1,18 +1,8 @@
 import React from 'react'
 import { RiDeleteBack2Fill } from 'react-icons/ri'
-import { useMutation, useQueryClient } from 'react-query'
-import { updateTodo, deleteTodo } from '../../api/todosApi'
 
 
-
-export default function TodoItem({ todoId, todoIsDone, todoText }) {
-  const queryClient = useQueryClient()
-
-  const removeTodo = useMutation(deleteTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['todos'])
-    },
-  })
+export default function TodoItem({ removeTodo, todoId, todoIsDone, todoText }) {
 
   return (
     <div className='item-container'>
