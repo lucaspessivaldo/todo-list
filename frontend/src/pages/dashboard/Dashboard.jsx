@@ -35,6 +35,12 @@ export default function Dashboard() {
     },
   })
 
+  const checkTodo = useMutation(updateTodo, {
+    onSuccess: () => {
+      return queryClient.invalidateQueries()
+    }
+  })
+
   return (
     <main className='dashboard-main'>
       <div className='dashboard-container'>
@@ -63,6 +69,7 @@ export default function Dashboard() {
               todoIsDone={todo.checked}
               todoText={todo.text}
               removeTodo={removeTodo}
+              checkTodo={checkTodo}
             />
           )
         })}
