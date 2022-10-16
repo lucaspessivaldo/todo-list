@@ -91,11 +91,6 @@ const updateTodo = asyncHandler(async (req, res) => {
     throw new Error('todoId is not a Object.id valid')
   }
 
-  if (!text && !checked) {
-    res.status(400)
-    throw new Error('text or checked are required')
-  }
-
   const todo = await Todo.findById(todoId)
 
   if (!todo || todo.user.toString() !== userToken) {
