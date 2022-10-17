@@ -14,15 +14,12 @@ html {
   background-color: #000000;
 }
 
-.Toastify__toast--error {
-  font-size: 1.8rem;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.homepage-title {
-  color: white;
-  font-size: 5rem;
-  text-align: center;
-
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+.Toastify__toast--error {
+  font-size: 1.8rem;
 }

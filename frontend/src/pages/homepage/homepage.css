@@ -1,0 +1,72 @@
+.hero-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage-title {
+  color: white;
+  font-size: 5rem;
+  text-align: center;
+
+  margin-top: 5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+}
+
+.homepage-small-title {
+  color: white;
+  font-size: 1.8rem;
+  text-align: center;
+
+  margin-top: 1.3rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+}
+
+.homepage-img {
+  max-width: 90rem;
+  width: 100%;
+  height: auto;
+}
+
+/* From uiverse.io by @Voxybuns */
+.homepage-button {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #000000;
+  --button_outline_color: #ffffff;
+  margin-top: 5rem;
+  cursor: pointer;
+  width: 20rem;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+}
+
+.button_top {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.homepage-button:hover .button_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.homepage-button:active .button_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
