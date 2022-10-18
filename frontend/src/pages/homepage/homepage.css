@@ -25,9 +25,10 @@
 }
 
 .homepage-img {
-  max-width: 90rem;
+  max-width: 80rem;
   width: 100%;
   height: auto;
+  margin: 2rem 0;
 }
 
 /* From uiverse.io by @Voxybuns */
@@ -69,4 +70,73 @@
 .homepage-button:active .button_top {
   /* Push the button downwards when pressed */
   transform: translateY(0);
+}
+
+.feature-section-text {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+
+  color: rgb(255, 255, 255);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+}
+
+.featurelist-container {
+  max-width: 100rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+}
+
+
+.feature-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 1rem;
+
+}
+
+.feature-list-icon {
+  /* color: rgb(76, 97, 252); */
+  color: white;
+  font-size: 5rem;
+}
+
+
+.feature-text {
+  color: white;
+  text-align: center;
+}
+
+.feature-item-maintext {
+  color: white;
+  font-size: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600
+}
+
+.feature-item-descriptiontext {
+  color: white;
+  font-size: 1.3rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400
+}
+
+@media (max-width: 650px) {
+  .featurelist-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-list-item {
+    align-items: center;
+    margin-bottom: 3rem;
+
+  }
 }
