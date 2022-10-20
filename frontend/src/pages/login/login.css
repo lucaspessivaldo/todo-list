@@ -27,21 +27,6 @@
   margin-bottom: 1rem;
 }
 
-.form-input {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1.8rem;
-  color: white;
-
-  width: 35rem;
-  height: 5rem;
-
-  border-radius: 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.733);
-  outline: none;
-  padding: 1rem;
-  background-color: black;
-}
-
 .input-error {
   border: 1px solid rgb(250, 62, 62);
   outline: none;
@@ -54,21 +39,26 @@
   color: rgb(250, 62, 62);
 }
 
-.form-submit-button {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1.5rem;
-
-  width: 35rem;
-  height: 4.8rem;
-  border-radius: 0.6rem;
-  outline: none;
-  border: none;
-  cursor: pointer;
-
-}
-
 .form-submit-button:hover {
   border: 1px solid white;
   background-color: black;
   color: white;
+}
+
+@media (max-width: 365px) {
+  .form-input {
+    width: 100%;
+  }
+
+  .form-submit-button {
+    width: 100%;
+  }
+
+  .form-login {
+    width: 95%;
+  }
+
+  .form-input-container {
+    width: 100%;
+  }
 }

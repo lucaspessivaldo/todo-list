@@ -57,8 +57,8 @@
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.5rem;
 
-  width: 15rem;
-  height: 4rem;
+  width: 35rem;
+  height: 4.8rem;
   border-radius: 0.6rem;
   outline: none;
   border: none;
@@ -70,4 +70,22 @@
   border: 1px solid white;
   background-color: black;
   color: white;
+}
+
+@media (max-width: 365px) {
+  .form-input {
+    width: 100%;
+  }
+
+  .form-submit-button {
+    width: 100%;
+  }
+
+  .form-singup {
+    width: 95%;
+  }
+
+  .form-input-container {
+    width: 100%;
+  }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AiOutlineCloudSync, AiOutlineClockCircle, AiOutlineSisternode } from 'react-icons/ai'
+import { AiOutlineCloudSync, AiOutlineClockCircle, AiOutlineCheckSquare } from 'react-icons/ai'
 
 export default function FeatureSection() {
   return (
@@ -23,9 +23,9 @@ export default function FeatureSection() {
         </div>
 
         <div className='feature-list-item'>
-          <AiOutlineSisternode className='feature-list-icon' />
-          <p className='feature-item-maintext'>Subtasks</p>
-          <p className='feature-item-descriptiontext'>Create subtasks easy</p>
+          <AiOutlineCheckSquare className='feature-list-icon' />
+          <p className='feature-item-maintext'>Tasks</p>
+          <p className='feature-item-descriptiontext'>Create tasks easy</p>
         </div>
 
       </div>
