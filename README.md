@@ -26,17 +26,17 @@ A Todo List Project - Full-Stack
 ## Get Started
 
 1. Clone the repository
-```sh
-git clone https://github.com/lucaspessivaldo/todo-list.git
-```
+  ```sh
+  git clone https://github.com/lucaspessivaldo/todo-list.git
+  ```
 
 2. Install NPM packages
-```sh
-npm install
-```
+  ```sh
+  npm install
+  ```
 
-3. Create .env file on backend folder
-```js
-MONGODB_LINK = "YOUR MONGODB LINK";
-JWT_SECRET = "YOUR JWT SECRET";
-```
+3. Create `.env` file on backend folder
+  ```js
+  MONGODB_LINK = "YOUR MONGODB LINK";
+  JWT_SECRET = "YOUR JWT SECRET";
+  ```
