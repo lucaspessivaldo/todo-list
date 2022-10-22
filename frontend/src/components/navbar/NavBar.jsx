@@ -1,5 +1,5 @@
 import { RiCheckDoubleFill } from 'react-icons/ri'
-import { FaUserCircle } from 'react-icons/fa'
+import UserButton from './UserButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../../app/authSlice'
@@ -38,7 +38,7 @@ export default function NavBar() {
               </Link>
             </>
           ) : (
-            <FaUserCircle onClick={() => onLogout()} className='navbar-user-picture' />
+            <UserButton onLogout={onLogout} username={user.data.name} />
           )}
 
         </div>

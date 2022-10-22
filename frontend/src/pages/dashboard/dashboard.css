@@ -1,18 +1,17 @@
 .dashboard-main {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .dashboard-container {
   border-radius: 1rem;
-  padding: 2rem;
-  width: 60rem;
+  max-width: 70rem;
+  width: 98%;
 
   font-family: 'Rajdhani', sans-serif;
 
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.185);
 }
 
 .dashboard-text-header {
@@ -20,6 +19,7 @@
 }
 
 .delete-item-button {
+  flex-shrink: 0;
   cursor: pointer;
   font-size: 2.5rem;
   transition: color 0.5s;
@@ -44,7 +44,7 @@
 }
 
 .item-todo-text {
-  cursor: pointer;
+  overflow-wrap: anywhere;
 }
 
 .item-text-checkbox {
@@ -71,11 +71,11 @@
 
 
 input[type="checkbox"] {
+  flex-shrink: 0;
   cursor: pointer;
   accent-color: #1b1b1b;
-  font: inherit;
-  width: 0.9em;
-  height: 0.9em;
+  width: 2rem;
+  height: 2rem;
 }
 
 .create-todo-container {

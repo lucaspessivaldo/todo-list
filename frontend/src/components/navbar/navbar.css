@@ -72,3 +72,44 @@
 a {
   text-decoration: none;
 }
+
+.dropdownmenu-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+  color: black;
+  font-size: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin-top: 0.6rem;
+
+  border: none;
+  outline: none;
+}
+
+.dropdownmenu-items:hover {
+  color: rgb(37, 37, 37);
+}
+
+.dropdownmenu-content {
+  background-color: white;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.dropdowmenu-username {
+  font-size: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  border: none;
+  outline: none;
+}

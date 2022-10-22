@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import TodoItem from './TodoItem'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
@@ -10,6 +10,7 @@ import { getTodos, addTodo, updateTodo, deleteTodo } from '../../api/todosApi'
 import './dashboard.css'
 
 export default function Dashboard() {
+  const inputRef = useRef(null)
   const queryClient = useQueryClient()
   const { user } = useSelector((state) => state.auth)
   const [newTodo, setNewTodo] = useState('')
@@ -41,6 +42,11 @@ export default function Dashboard() {
     }
   })
 
+  const submitTodo = () => {
+    inputRef.current.value = ''
+    createNewTodo.mutate(newTodo)
+  }
+
   return (
     <main className='dashboard-main'>
       <div className='dashboard-container'>
@@ -51,13 +57,14 @@ export default function Dashboard() {
         <div className='create-todo-container'>
           <input
             type="text"
+            ref={inputRef}
             className='input-create-todo'
             placeholder='Add Todo...'
             onChange={(event) => setNewTodo(event.target.value)}
           />
           <MdAddCircle
             className='dashbaord-plus-icon'
-            onClick={() => createNewTodo.mutate(newTodo)}
+            onClick={() => submitTodo()}
           />
         </div>
         {isLoading && <h1>Is loading...</h1>}
