@@ -13,6 +13,7 @@ A Todo List Project - Full-Stack
   - JWT
 - **Front-end**
   - React-js
+  - React Testing Library
   - React Query
   - React router dom
   - React-icons
